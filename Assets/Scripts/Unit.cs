@@ -12,13 +12,13 @@ public class Unit : MonoBehaviour
         if (Vector3.Distance(transform.position, targetPosition) > stoppingDistance)
         {
             Vector3 moveDirection = (targetPosition - transform.position).normalized;
-            float moveSpeed = 4f;
+            float moveSpeed = 10f;
             transform.position += moveDirection * Time.deltaTime;
         }
         
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetMouseButtonDown(0))
         {
-            Move(new Vector3(4, 0, 4));
+            Move(mouseWorld.GetPosition());
         }
     }
 
