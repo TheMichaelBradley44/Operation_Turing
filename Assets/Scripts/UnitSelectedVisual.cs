@@ -13,21 +13,17 @@ public class UnitSelectedVisual : MonoBehaviour
     private void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();
-        if (meshRenderer != null)
-        {
-            Debug.LogError("MesRenderere Component not found on the GameObject");
-        }
     }
 
     private void Start()
     {
         UnitActionSystem.Instance.OnSelectedUnitChanged += UnitActionSystem_OnSelectedUnitChanged;
-        UpdateVisual();
+
     }
 
     private void UnitActionSystem_OnSelectedUnitChanged(object sender, EventArgs empty)
     {
-        UpdateVisual();
+       UpdateVisual();
     }
 
     private void UpdateVisual()

@@ -14,7 +14,7 @@ public class UnitActionSystem : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) 
+        if (Instance != null) 
         {
             Debug.LogError("There is more than one UnitActionSystem! " + transform + " - " + Instance);
             Destroy(gameObject);
@@ -40,10 +40,11 @@ public class UnitActionSystem : MonoBehaviour
         {
             if (raycastHit.transform.TryGetComponent<Unit>(out Unit unit))
                 {
-                selectedUnit = unit;
+                SetSelectedUnit(unit);
                 return true;
                 }
         }
+
         return false;
     }
 
