@@ -11,6 +11,7 @@ public class MoveAction : MonoBehaviour
 
     private Vector3 targetPosition;
     private Unit Unit;
+    private bool isActive;
 
     private void Awake()
     {
@@ -20,28 +21,34 @@ public class MoveAction : MonoBehaviour
 
     private void Update()
     {
+        if (!isActive)
+        {
+            return;
+        }
+        Vector3 moveDirection = (targetPosition - transform.position).normalized;
+        
         float stoppingDistance = .1f;
         if (Vector3.Distance(transform.position, targetPosition) > stoppingDistance)
         {
-            Vector3 moveDirection = (targetPosition - transform.position).normalized;
             float moveSpeed = 4f;
             transform.position += moveDirection * moveSpeed * Time.deltaTime;
-
-            float rotateSpeed = 10f;
-            transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime * rotateSpeed);
-
 
             unitAnimator.SetBool("IsWalking", true);
         }
         else
         {
             unitAnimator.SetBool("IsWalking", false);
+            isActive = false;
         }
+        
+        float rotateSpeed = 10f;
+        transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime * rotateSpeed);
     }
 
 public void Move(GridPosition gridPosition)
     {
         this.targetPosition = LevelGrid.Instance.GetWorldPosition(gridPosition);
+        isActive = true;
     }
 
     public bool IsValidActionGridPosition(GridPosition gridPosition)
