@@ -1,13 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-private float totalSpinAmount;
-public class SpinAction : MonoBehaviour
-{
-	public bool isActive;
 
-	private void Update()
+public class SpinAction : BaseAction
+{
+    private float totalSpinAmount;
+
+
+    private void Update()
 	{
 		if (!isActive)
 			{
@@ -21,14 +23,15 @@ public class SpinAction : MonoBehaviour
 			if (totalSpinAmount >= 360f)
 			{
 				isActive = false;
+				onActionComplete();
 			}
 	}
 
-	public void Spin()
+	public void Spin(Action onActionComplete)
 	{
+		this.onActionComplete = onActionComplete;
 		isActive = true;
 		totalSpinAmount = 0f;
-		Debug.Log("Spin");
 	}
 
 }

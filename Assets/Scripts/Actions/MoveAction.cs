@@ -1,21 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MoveAction : MonoBehaviour
+public class MoveAction : BaseAction
 {
 
     [SerializeField] private Animator unitAnimator;
     [SerializeField] private int maxMoveDistance = 4;
 
     private Vector3 targetPosition;
-    private Unit Unit;
-    private bool isActive;
 
-    private void Awake()
+    protected override void Awake()
     {
-        Unit = GetComponent<Unit>();
+        base.Awake();
         targetPosition = transform.position;
     }
 
@@ -39,14 +38,16 @@ public class MoveAction : MonoBehaviour
         {
             unitAnimator.SetBool("IsWalking", false);
             isActive = false;
+            onActionComplete(); 
         }
         
         float rotateSpeed = 10f;
         transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime * rotateSpeed);
     }
 
-public void Move(GridPosition gridPosition)
+public void Move(GridPosition gridPosition, Action onActionComplete)
     {
+        this.onActionComplete = onActionComplete;
         this.targetPosition = LevelGrid.Instance.GetWorldPosition(gridPosition);
         isActive = true;
     }
@@ -61,7 +62,7 @@ public void Move(GridPosition gridPosition)
     {
         List<GridPosition> validGridPositionList = new List<GridPosition>();
        
-      GridPosition unitGridPoisition = Unit.GetGridPosition();
+      GridPosition unitGridPoisition = unit.GetGridPosition();
 
         for (int x = -maxMoveDistance; x <= maxMoveDistance; x++)
         {
