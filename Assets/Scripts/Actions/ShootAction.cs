@@ -6,6 +6,10 @@ using UnityEngine;
 public class ShootAction : BaseAction
 {
 
+    public event EventHandler OnShoot;
+
+
+
     private enum State
     {
         Aiming,
@@ -69,13 +73,15 @@ public class ShootAction : BaseAction
                 stateTimer = coolOffStateTime;
                 break;
             case State.Cooloff:
-                onActionComplete();
+                ActionComplete();
                 break;
         }
     }
 
     private void Shoot()
     {
+        OnShoot?.Invoke(this, EventArgs.Empty);
+
         targetUnit.Damage();
     }
 
@@ -142,3 +148,4 @@ public class ShootAction : BaseAction
         canShootBullet = true;
     }
 }
+
