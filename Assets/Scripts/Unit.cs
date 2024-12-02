@@ -10,7 +10,9 @@ public class Unit : MonoBehaviour
 
     public static event EventHandler OnAnyActionPointsChanged;
 
+
     [SerializeField] private bool isEnemy;
+
 
     private GridPosition gridPosition;
     private MoveAction moveAction;
@@ -24,6 +26,7 @@ public class Unit : MonoBehaviour
         spinAction = GetComponent<SpinAction>();
         baseActionArray = GetComponents<BaseAction>();
     }
+
     private void Start()
     {
         gridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
@@ -34,27 +37,32 @@ public class Unit : MonoBehaviour
 
     private void Update()
     {
-
         GridPosition newGridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
-        if (newGridPosition != gridPosition) 
+        if (newGridPosition != gridPosition)
         {
             LevelGrid.Instance.UnitMovedGridPosition(this, gridPosition, newGridPosition);
             gridPosition = newGridPosition;
         }
-
     }
 
-    public MoveAction GetMoveAction() 
+    public MoveAction GetMoveAction()
     {
         return moveAction;
     }
-    public SpinAction GetSpinAction() 
+
+    public SpinAction GetSpinAction()
     {
         return spinAction;
     }
+
     public GridPosition GetGridPosition()
     {
         return gridPosition;
+    }
+
+    public Vector3 GetWorldPosition()
+    {
+        return transform.position;
     }
 
     public BaseAction[] GetBaseActionArray()
@@ -64,24 +72,24 @@ public class Unit : MonoBehaviour
 
     public bool TrySpendActionPointsToTakeAction(BaseAction baseAction)
     {
-        if (CanSpendActionPointsToTakeActions(baseAction))
+        if (CanSpendActionPointsToTakeAction(baseAction))
         {
             SpendActionPoints(baseAction.GetActionPointsCost());
             return true;
         }
         else
-        { 
+        {
             return false;
         }
     }
 
-    public bool CanSpendActionPointsToTakeActions(BaseAction baseAction)
+    public bool CanSpendActionPointsToTakeAction(BaseAction baseAction)
     {
         if (actionPoints >= baseAction.GetActionPointsCost())
         {
             return true;
         }
-        else 
+        else
         {
             return false;
         }
@@ -95,8 +103,8 @@ public class Unit : MonoBehaviour
     }
 
     public int GetActionPoints()
-    { 
-        return actionPoints; 
+    {
+        return actionPoints;
     }
 
     private void TurnSystem_OnTurnChanged(object sender, EventArgs e)
@@ -114,4 +122,10 @@ public class Unit : MonoBehaviour
     {
         return isEnemy;
     }
+
+    public void Damage()
+    {
+        Debug.Log(transform + " damaged!");
+    }
+
 }
