@@ -125,6 +125,7 @@ MonoBehaviour:
   animator: {fileID: 6653301680103978388}
   bulletProjectilePrefab: {fileID: 8253053112939777043, guid: 3667c5268277df041bec71237dc01e3a,
     type: 3}
+  shootPointTransform: {fileID: 7313766605550516457}
 --- !u!1 &5390168523735417244
 GameObject:
   m_ObjectHideFlags: 0

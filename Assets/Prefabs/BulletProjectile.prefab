@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8253053112939777043}
+  - component: {fileID: 6207191224917526664}
   m_Layer: 0
   m_Name: BulletProjectile
   m_TagString: Untagged
@@ -32,6 +33,21 @@ Transform:
   - {fileID: 5617194371312816316}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6207191224917526664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7191420380885594414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fbb0e9a7d00a7649bef7bae79648863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trailRenderer: {fileID: 6629667232690967043}
+  bulletHitVFX: {fileID: 9076761941371551543, guid: 8e25ed7e0933fab48b632b755ff7e7b7,
+    type: 3}
 --- !u!1 &7928119746219422664
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,6 +192,6 @@ TrailRenderer:
     generateLightingData: 0
   m_MinVertexDistance: 0.01
   m_MaskInteraction: 0
-  m_Autodestruct: 0
+  m_Autodestruct: 1
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1

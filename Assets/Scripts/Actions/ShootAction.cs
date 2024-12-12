@@ -6,8 +6,13 @@ using UnityEngine;
 public class ShootAction : BaseAction
 {
 
-    public event EventHandler OnShoot;
+    public event EventHandler<OnShootEventArgs> OnShoot;
 
+    public class OnShootEventArgs : EventArgs
+    {
+        public Unit targetUnit;
+        public Unit shootingUnit;
+    }
 
 
     private enum State
@@ -80,7 +85,11 @@ public class ShootAction : BaseAction
 
     private void Shoot()
     {
-        OnShoot?.Invoke(this, EventArgs.Empty);
+        OnShoot?.Invoke(this, new OnShootEventArgs
+        {
+            targetUnit = targetUnit,
+            shootingUnit = unit
+        });
 
         targetUnit.Damage();
     }
