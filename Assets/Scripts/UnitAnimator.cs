@@ -7,6 +7,7 @@ public class UnitAnimator : MonoBehaviour
 {
 
     [SerializeField] private Animator animator;
+    [SerializeField] private Transform bulletProjectilePrefab;
 
     private void Awake()
     {
