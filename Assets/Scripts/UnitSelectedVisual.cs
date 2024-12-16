@@ -1,11 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class UnitSelectedVisual : MonoBehaviour
 {
+
     [SerializeField] private Unit unit;
 
     private MeshRenderer meshRenderer;
@@ -19,11 +19,12 @@ public class UnitSelectedVisual : MonoBehaviour
     {
         UnitActionSystem.Instance.OnSelectedUnitChanged += UnitActionSystem_OnSelectedUnitChanged;
 
+        UpdateVisual();
     }
 
     private void UnitActionSystem_OnSelectedUnitChanged(object sender, EventArgs empty)
     {
-       UpdateVisual();
+        UpdateVisual();
     }
 
     private void UpdateVisual()
@@ -42,5 +43,7 @@ public class UnitSelectedVisual : MonoBehaviour
     {
         UnitActionSystem.Instance.OnSelectedUnitChanged -= UnitActionSystem_OnSelectedUnitChanged;
     }
+
+
 
 }

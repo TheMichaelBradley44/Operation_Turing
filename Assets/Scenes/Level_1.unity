@@ -1240,6 +1240,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridSystemVisualSinglePrefab: {fileID: 4387574255573969803, guid: 16e83cb4eb7c99d4aaaf1d74157959ba,
     type: 3}
+  gridVisualTypeMaterialList:
+  - gridVisualType: 0
+    material: {fileID: 2100000, guid: 9cf9c3c9d8590d44e9b0171f2d856c5b, type: 2}
+  - gridVisualType: 1
+    material: {fileID: 2100000, guid: 581f4bb279f1e9045b2c51f128ec9a54, type: 2}
+  - gridVisualType: 2
+    material: {fileID: 2100000, guid: 034b83cccdcd3904e8e6e8390f6e2967, type: 2}
+  - gridVisualType: 4
+    material: {fileID: 2100000, guid: e61f1fd51d3daca478378cecfb6d826a, type: 2}
+  - gridVisualType: 3
+    material: {fileID: 2100000, guid: b3f0e6a5752ddff4b96bffdf543d09bf, type: 2}
 --- !u!4 &822978818
 Transform:
   m_ObjectHideFlags: 0
@@ -2373,7 +2384,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1621710946}
   m_CullTransparentMesh: 1
---- !u!1001 &1648570787
+--- !u!1001 &1658286095
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -2389,7 +2400,7 @@ PrefabInstance:
     - target: {fileID: 3273166545945937387, guid: 1d78b12e812efcd4a92a46cd653c02af,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: 3.99
       objectReference: {fileID: 0}
     - target: {fileID: 3273166545945937387, guid: 1d78b12e812efcd4a92a46cd653c02af,
         type: 3}
@@ -2399,7 +2410,7 @@ PrefabInstance:
     - target: {fileID: 3273166545945937387, guid: 1d78b12e812efcd4a92a46cd653c02af,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3273166545945937387, guid: 1d78b12e812efcd4a92a46cd653c02af,
         type: 3}
@@ -3229,7 +3240,7 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 6934710444722274200}
-  - {fileID: 1648570787}
+  - {fileID: 1658286095}
   - {fileID: 551743277}
   - {fileID: 1150181276}
   - {fileID: 2083623437}

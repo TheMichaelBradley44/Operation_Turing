@@ -15,6 +15,7 @@ public class ShootAction : BaseAction
     }
 
 
+
     private enum State
     {
         Aiming,
@@ -133,7 +134,7 @@ public class ShootAction : BaseAction
                 Unit targetUnit = LevelGrid.Instance.GetUnitAtGridPosition(testGridPosition);
 
                 if (targetUnit.IsEnemy() == unit.IsEnemy())
-                {
+                { 
                     continue;
                 }
 
@@ -146,7 +147,6 @@ public class ShootAction : BaseAction
 
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
-
         targetUnit = LevelGrid.Instance.GetUnitAtGridPosition(gridPosition);
 
         state = State.Aiming;
@@ -162,5 +162,11 @@ public class ShootAction : BaseAction
     {
         return targetUnit;
     }
+
+    public int GetMaxShootDistance()
+    {
+        return maxShootDistance;
+    }
+
 }
 
