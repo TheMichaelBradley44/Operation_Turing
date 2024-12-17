@@ -1,10 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Testing : MonoBehaviour
 {
-    [SerializeField] private Unit Unit;
+
+    [SerializeField] private Unit unit;
+
     private void Start()
     {
     }
@@ -13,7 +16,8 @@ public class Testing : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            
         }
     }
+
 }
+
