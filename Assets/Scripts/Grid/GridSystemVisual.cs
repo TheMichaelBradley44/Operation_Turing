@@ -112,9 +112,18 @@ public class GridSystemVisual : MonoBehaviour
     {
         foreach (GridPosition gridPosition in gridPositionList)
         {
-            gridSystemVisualSingleArray[gridPosition.x, gridPosition.z].
-                Show(GetGridVisualTypeMaterial(gridVisualType));
+            if (IsValidGridPosition(gridPosition)) 
+            {
+                gridSystemVisualSingleArray[gridPosition.x, gridPosition.z].
+                    Show(GetGridVisualTypeMaterial(gridVisualType));
+            }
         }
+    }
+
+    private bool IsValidGridPosition(GridPosition gridPosition)
+    {
+        return gridPosition.x >= 0 && gridPosition.x < LevelGrid.Instance.GetWidth()
+               && gridPosition.z >= 0 && gridPosition.z < LevelGrid.Instance.GetHeight();
     }
 
     private void UpdateGridVisual()
