@@ -3162,6 +3162,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1108968494}
+  - component: {fileID: 1108968495}
   m_Layer: 0
   m_Name: InteractSphere
   m_TagString: Untagged
@@ -3185,6 +3186,21 @@ Transform:
   - {fileID: 1621888385}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1108968495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108968493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 166f3650dffd2d54d8a9e28bd20487f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  greenMaterial: {fileID: 2100000, guid: b5ecc77112c637e4f91913c683aa633b, type: 2}
+  redMaterial: {fileID: 2100000, guid: 8919cdc46f3df454f9a2d8da0449d37e, type: 2}
+  meshRenderer: {fileID: 1621888386}
 --- !u!1001 &1150181276
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5698,7 +5714,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 8919cdc46f3df454f9a2d8da0449d37e, type: 2}
+  - {fileID: 2100000, guid: b5ecc77112c637e4f91913c683aa633b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9326,6 +9343,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 6077397950397184145, guid: 60f20fac26593f845afbfbaeabd91e96,
+        type: 3}
+      propertyPath: isOpen
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7012235672984295950, guid: 60f20fac26593f845afbfbaeabd91e96,
         type: 3}
