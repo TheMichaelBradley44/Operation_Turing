@@ -3,36 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour, IInteractable
+public class InteractSphere : MonoBehaviour, IInteractable
 {
 
-    [SerializeField] private bool isOpen;
+    [SerializeField] private Material greenMaterial;
+    [SerializeField] private Material redMaterial;
+    [SerializeField] private MeshRenderer meshRenderer;
 
     private GridPosition gridPosition;
-    private Animator animator;
+    private bool isGreen;
     private Action onInteractionComplete;
     private bool isActive;
     private float timer;
-
-
-    private void Awake()
-    {
-        animator = GetComponent<Animator>();
-    }
 
     private void Start()
     {
         gridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
         LevelGrid.Instance.SetInteractableAtGridPosition(gridPosition, this);
 
-        if (isOpen)
-        {
-            OpenDoor();
-        }
-        else
-        {
-            CloseDoor();
-        }
+        SetColorGreen();
     }
 
     private void Update()
@@ -51,7 +40,17 @@ public class Door : MonoBehaviour, IInteractable
         }
     }
 
+    private void SetColorGreen()
+    {
+        isGreen = true;
+        meshRenderer.material = greenMaterial;
+    }
 
+    private void SetColorRed()
+    {
+        isGreen = false;
+        meshRenderer.material = redMaterial;
+    }
 
     public void Interact(Action onInteractionComplete)
     {
@@ -59,28 +58,14 @@ public class Door : MonoBehaviour, IInteractable
         isActive = true;
         timer = .5f;
 
-        if (isOpen)
+        if (isGreen)
         {
-            CloseDoor();
+            SetColorRed();
         }
         else
         {
-            OpenDoor();
+            SetColorGreen();
         }
-    }
-
-    private void OpenDoor()
-    {
-        isOpen = true;
-        animator.SetBool("IsOpen", isOpen);
-        Pathfinding.Instance.SetIsWalkableGridPosition(gridPosition, true);
-    }
-
-    private void CloseDoor()
-    {
-        isOpen = false;
-        animator.SetBool("IsOpen", isOpen);
-        Pathfinding.Instance.SetIsWalkableGridPosition(gridPosition, false);
     }
 
 }
