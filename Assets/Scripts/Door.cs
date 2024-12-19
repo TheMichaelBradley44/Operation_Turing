@@ -6,6 +6,10 @@ using UnityEngine;
 public class Door : MonoBehaviour, IInteractable
 {
 
+    public static event EventHandler OnAnyDoorOpened;
+    public event EventHandler OnDoorOpened;
+
+
     [SerializeField] private bool isOpen;
 
     private GridPosition gridPosition;
@@ -74,6 +78,9 @@ public class Door : MonoBehaviour, IInteractable
         isOpen = true;
         animator.SetBool("IsOpen", isOpen);
         Pathfinding.Instance.SetIsWalkableGridPosition(gridPosition, true);
+
+        OnDoorOpened?.Invoke(this, EventArgs.Empty);
+        OnAnyDoorOpened?.Invoke(this, EventArgs.Empty);
     }
 
     private void CloseDoor()
