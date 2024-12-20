@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class SpinAction : BaseAction
 {
-
     private float totalSpinAmount;
-
+    private int healAmount = 20; 
 
     private void Update()
     {
@@ -20,8 +19,10 @@ public class SpinAction : BaseAction
         transform.eulerAngles += new Vector3(0, spinAddAmount, 0);
 
         totalSpinAmount += spinAddAmount;
+
         if (totalSpinAmount >= 360f)
         {
+            PerformHeal(); 
             ActionComplete();
         }
     }
@@ -33,10 +34,29 @@ public class SpinAction : BaseAction
         ActionStart(onActionComplete);
     }
 
+    private void PerformHeal()
+    {
+        HealthSystem healthSystem = GetComponent<HealthSystem>();
+
+        if (healthSystem != null)
+        {
+            int currentHealth = (int)(healthSystem.GetHealthNormalized() * healthSystem.GetMaxHealth());
+            int newHealth = Mathf.Min(currentHealth + healAmount, healthSystem.GetMaxHealth());
+
+            int restoredHealth = newHealth - currentHealth; 
+            Debug.Log($"Healing performed: +{restoredHealth} health.");
+
+            healthSystem.SetHealth(newHealth);
+        }
+        else
+        {
+            Debug.LogError("HealthSystem component not found on this unit!");
+        }
+    }
 
     public override string GetActionName()
     {
-        return "Spin";
+        return "Heal";
     }
 
     public override List<GridPosition> GetValidActionGridPositionList()
@@ -59,8 +79,7 @@ public class SpinAction : BaseAction
         return new EnemyAIAction
         {
             gridPosition = gridPosition,
-            actionValue = 0,
+            actionValue = 5,
         };
     }
-
 }

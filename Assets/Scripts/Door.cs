@@ -5,10 +5,8 @@ using UnityEngine;
 
 public class Door : MonoBehaviour, IInteractable
 {
-
     public static event EventHandler OnAnyDoorOpened;
     public event EventHandler OnDoorOpened;
-
 
     [SerializeField] private bool isOpen;
 
@@ -18,6 +16,8 @@ public class Door : MonoBehaviour, IInteractable
     private bool isActive;
     private float timer;
 
+    [Header("Associated Objects")]
+    [SerializeField] private List<GameObject> objectsToDeactivate = new List<GameObject>();
 
     private void Awake()
     {
@@ -55,8 +55,6 @@ public class Door : MonoBehaviour, IInteractable
         }
     }
 
-
-
     public void Interact(Action onInteractionComplete)
     {
         this.onInteractionComplete = onInteractionComplete;
@@ -79,6 +77,14 @@ public class Door : MonoBehaviour, IInteractable
         animator.SetBool("IsOpen", isOpen);
         Pathfinding.Instance.SetIsWalkableGridPosition(gridPosition, true);
 
+        foreach (GameObject obj in objectsToDeactivate)
+        {
+            if (obj != null)
+            {
+                obj.SetActive(false);
+            }
+        }
+
         OnDoorOpened?.Invoke(this, EventArgs.Empty);
         OnAnyDoorOpened?.Invoke(this, EventArgs.Empty);
     }
@@ -88,6 +94,13 @@ public class Door : MonoBehaviour, IInteractable
         isOpen = false;
         animator.SetBool("IsOpen", isOpen);
         Pathfinding.Instance.SetIsWalkableGridPosition(gridPosition, false);
-    }
 
+        foreach (GameObject obj in objectsToDeactivate)
+        {
+            if (obj != null)
+            {
+                obj.SetActive(true);
+            }
+        }
+    }
 }
